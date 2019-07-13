@@ -21,7 +21,7 @@ const typeDefs = gql`
 
   type Query {
     movies: [Movie]
-    moive(imdbID: String!): Movie
+    movie(imdbID: String!): Movie
   }
 
   type Mutation {
