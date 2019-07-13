@@ -8,6 +8,11 @@ const resolvers = {
     movie: (_, { imdbID }) => {
       return movieModel.findById(imdbID);
     }
+  },
+  Mutation: {
+    rating: (_, { imdbID, rating, comment }) => {
+      return movieModel.addRating(imdbID, rating, comment);
+    }
   }
 };
 
