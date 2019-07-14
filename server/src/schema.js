@@ -5,7 +5,7 @@ const typeDefs = gql`
     imdbID: String
     title: String
     year: Int
-    poster: Int
+    poster: String
     released: String
     director: String
     actors: [String]
