@@ -22,15 +22,19 @@ export const movies = gql`
 
 export const movie = gql`
   query movie($imdbID: String!) {
-    title
+    movie(imdbID: $imdbID) {
+      title
+    }
   }
 `;
 
 export const addRating = gql`
   mutation rating($imdbID: String!, $rating: Int!, $comment: String!) {
-    ratings(imdbID: $imdbID, rating: $rating, comment: $comment) {
-      rating
-      comment
+    rating(imdbID: $imdbID, rating: $rating, comment: $comment) {
+      ratings {
+        rating
+        comment
+      }
     }
   }
 `;
