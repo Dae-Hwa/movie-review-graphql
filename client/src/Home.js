@@ -62,6 +62,7 @@ const Movie = ({ movie }, { key }) => (
 );
 
 function AddRating({ imdbID }) {
+  const [ratingValueStr, setRatingValue] = React.useState("5");
   return (
     <Mutation mutation={query.addRating}>
       {(rating, { data }) => {
@@ -70,16 +71,25 @@ function AddRating({ imdbID }) {
             <form
               onSubmit={e => {
                 e.preventDefault();
+                const ratingValue = parseInt(ratingValueStr, 10);
                 rating({
                   variables: {
-                    imdbID: imdbID.toString(),
-                    rating: 5,
+                    imdbID: imdbID,
+                    rating: ratingValue,
                     comment: "cool"
                   }
                 });
               }}
             >
-              <input type="number" defaultValue="5" min="1" max="5" />
+              <input
+                type="number"
+                min="1"
+                max="5"
+                value={ratingValueStr}
+                onChange={e => {
+                  return setRatingValue(e.target.value);
+                }}
+              />
               <input />
               <button type="submit">Add</button>
             </form>
