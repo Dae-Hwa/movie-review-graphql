@@ -61,7 +61,7 @@ const Movie = ({ movie }, { key }) => (
   </div>
 );
 
-function AddRating() {
+function AddRating({ imdbID }) {
   return (
     <Mutation mutation={query.addRating}>
       {(rating, { data }) => {
@@ -71,7 +71,11 @@ function AddRating() {
               onSubmit={e => {
                 e.preventDefault();
                 rating({
-                  variables: { imdbID: "tt0371746", rating: 5, comment: "cool" }
+                  variables: {
+                    imdbID: imdbID.toString(),
+                    rating: 5,
+                    comment: "cool"
+                  }
                 });
               }}
             >
