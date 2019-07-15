@@ -21,9 +21,16 @@ export const movies = gql`
 `;
 
 export const movie = gql`
-  {
-    movie(imdbID: "tt0371746") {
-      title
+  query movie($imdbID: String!) {
+    title
+  }
+`;
+
+export const addRating = gql`
+  mutation rating($imdbID: String!, $rating: Int!, $comment: String!) {
+    ratings(imdbID: $imdbID, rating: $rating, comment: $comment) {
+      rating
+      comment
     }
   }
 `;
